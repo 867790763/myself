@@ -22,11 +22,11 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 - [TypeScript](https://www.typescriptlang.org/) - 熟悉 TS 基本语法
 - [ES6+](http://es6.ruanyifeng.com/) - 熟悉 ES6 基本语法
 - [Vue-Router-v4](https://next.router.vuejs.org/) - 熟悉 vue-router 基本使用
-- [antd-design-vue](https://www.antdv.com/components/overview)
+- [Antd-design-vue](https://www.antdv.com/components/overview)
 
 ## 第三方库
-- [vue-amap](https://vue-amap.guyixi.cn/)
-- [threejs](https://threejs.org/)
+- [Vue-amap](https://vue-amap.guyixi.cn/)
+- [Threejs](https://threejs.org/)
 
 ## Project Setup
 
