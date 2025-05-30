@@ -17,6 +17,8 @@ declare module 'vue' {
     AInputPassword: typeof import('ant-design-vue/es')['InputPassword']
     AQrcode: typeof import('ant-design-vue/es')['QRCode']
     ARow: typeof import('ant-design-vue/es')['Row']
+    ATabPane: typeof import('ant-design-vue/es')['TabPane']
+    ATabs: typeof import('ant-design-vue/es')['Tabs']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
