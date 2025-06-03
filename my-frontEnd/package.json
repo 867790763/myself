@@ -12,6 +12,7 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "@vuemap/vue-amap": "^2.1.13",
     "@vuemap/vue-amap-extra": "^2.1.5",
