@@ -1,10 +1,11 @@
 import './assets/main.css'
 
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-
 import App from './App.vue'
-import router from './router'
+// import router from './router'
+import { setupRouter, router } from "@/router";
+import { setupStore } from "@/stores";
+import { createPermission } from "@/router/permission";
 import VueAMap, {initAMapApiLoader} from '@vuemap/vue-amap';
 // import VueAMapLoca from '@vuemap/vue-amap-loca';
 // import VueAMapExtra from '@vuemap/vue-amap-extra';
@@ -17,8 +18,8 @@ initAMapApiLoader({
   //} // 如果需要使用loca组件库，需要加载Loca
 })
 const app = createApp(App)
-
-app.use(createPinia())
-app.use(router)
+setupRouter(app)
+setupStore(app)
 app.use(VueAMap)
+createPermission(router)
 app.mount('#app')

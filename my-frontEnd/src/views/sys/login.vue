@@ -4,7 +4,7 @@
       <!-- <div class="topDiv"></div> -->
       <a-row style="padding: 1rem 0;">
         <a-col :span="12" style="padding: 0 1.5rem;">
-          <p style="padding: 12px 0;border-bottom: 1px solid #eeeeee;">扫描二维码登录</p>
+          <p class="pBorder">扫描二维码登录</p>
           <div style="text-align: center;">
             <a-qrcode
               error-level="H"
@@ -13,18 +13,31 @@
               style="width: 100%;margin: 1rem auto;"
             />
             <p>请使用 微信 扫码登录</p>
-            <p>打开站酷APP - 我的 - 右上角扫一扫</p>
+            <p>打开微信 - 右上角扫一扫</p>
           </div>
         </a-col>
         <a-col :span="12" style="padding: 0 1.5rem;">
-          <a-tabs v-model:activeKey="activeKey">
+          <p class="pBorder">登录</p>
+          <div style="text-align: center;"></div>
+          <a-form :model="formData" :wrapper-col="{ span: 24 }" @submit="submit" style="margin-top: 20px;">
+            <a-form-item name="username" :rules="[{ required: true, message: '请填写用户名/手机号' }]">
+              <a-input v-model:value="formData.username" placeholder="用户名/手机号"></a-input>
+            </a-form-item>
+            <a-form-item  name="password" :rules="[{ required: true, message: '请填写密码' }]">
+              <a-input-password v-model:value="formData.password" placeholder="密码"></a-input-password>
+            </a-form-item>
+            <a-form-item>
+              <a-button type="primary" html-type="submit" style="width: 100%;" :loading="loading">登录</a-button>
+            </a-form-item>
+          </a-form>
+          <!-- <a-tabs v-model:activeKey="activeKey">
             <a-tab-pane key="1" tab="短信登录">
-              <a-form :model="formData" :wrapper-col="{ span: 24 }">
+              <a-form :model="formData1" :wrapper-col="{ span: 24 }"  @finish="onFinish">
                 <a-form-item name="phone" :rules="[{ required: true, message: '请填写手机号' }]">
-                  <a-input v-model="formData.phone"  placeholder="手机号"></a-input>
+                  <a-input v-model="formData1.phone"  placeholder="手机号"></a-input>
                 </a-form-item>
                 <a-form-item  name="verCode" :rules="[{ required: true, message: '请填写验证码' }]">
-                  <a-input v-model="formData.verCode" placeholder="验证码"></a-input>
+                  <a-input v-model="formData1.verCode" placeholder="验证码"></a-input>
                 </a-form-item>
                 <a-form-item>
                   <a-button type="primary" html-type="submit" style="width: 100%;">登录</a-button>
@@ -32,19 +45,19 @@
               </a-form>
             </a-tab-pane>
             <a-tab-pane key="2" tab="密码登录">
-              <a-form :model="formData" :wrapper-col="{ span: 24 }">
+              <a-form :model="formData" :wrapper-col="{ span: 24 }" @submit="submit">
                 <a-form-item name="username" :rules="[{ required: true, message: '请填写用户名/手机号' }]">
-                  <a-input v-model="formData.username" placeholder="用户名/手机号"></a-input>
+                  <a-input v-model:value="formData.username" placeholder="用户名/手机号"></a-input>
                 </a-form-item>
                 <a-form-item  name="password" :rules="[{ required: true, message: '请填写密码' }]">
-                  <a-input v-model="formData.password" placeholder="密码"></a-input>
+                  <a-input-password v-model:value="formData.password" placeholder="密码"></a-input-password>
                 </a-form-item>
                 <a-form-item>
                   <a-button type="primary" html-type="submit" style="width: 100%;">登录</a-button>
                 </a-form-item>
               </a-form>
             </a-tab-pane>
-          </a-tabs>
+          </a-tabs> -->
           <a-row justify="center">
             <a-col style="font-size: 16px;">第三方账号登录</a-col>
           </a-row>
@@ -72,19 +85,30 @@ import {
   AlipayCircleFilled,
   GithubFilled,
 } from '@ant-design/icons-vue';
-interface FormState {
-  username: string;
-  password: string;
-  remember: boolean;
-}
-const activeKey = ref('2')
-const formData = ref(<FormState>{
+import { useUserStore } from "@/stores/modules/user";
+import { router } from "@/router";
+import axios from "axios";
+import { message } from "ant-design-vue";
+const activeKey = ref('2');
+const loading  = ref(false);
+const formData = ref(<LoginParams>{
   username: '',
   password: '',
-  remember: false
+  validCode: '',
+  rememberMe: false
 })
-console.log(formData.value.username);
-
+const submit = async () => {
+  console.log(formData.value);
+  loading.value = true
+  useUserStore().login(formData.value).then(res => {
+    loading.value = false
+    console.log(res);
+    if (res.code === 200) {
+      // message.success({ content: res.data.msg, duration: 2 });
+      message.loading({ content: '请稍等，正在进入系统...', duration: 1.5 }).then(() => router.push('/'))
+    }
+  })
+};
 </script>
 
 <style lang="less" scoped>
@@ -107,5 +131,11 @@ console.log(formData.value.username);
   position: absolute;
   top: 50%;
   transform: translate(115%, -50%);
+}
+.pBorder{
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom: 1px solid #eeeeee;
 }
 </style>

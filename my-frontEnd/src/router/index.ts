@@ -1,7 +1,8 @@
+import type { App } from "vue";
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
@@ -19,7 +20,7 @@ const router = createRouter({
     },
     {
       path: '/login',
-      name: '登录',
+      name: 'login',
       component: () => import('../views/sys/login.vue'),
     },
     {
@@ -34,5 +35,7 @@ const router = createRouter({
     },
   ],
 })
-
-export default router
+export function setupRouter(app: App<Element>) {
+  app.use(router);
+  // initTabPage();
+}
