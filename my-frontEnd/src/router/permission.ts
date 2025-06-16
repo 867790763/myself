@@ -8,15 +8,15 @@ const whitePathList: PageEnum[]= [LOGIN_PATH]
 
 export const createPermission = (router: Router) => {
   const userStore = useUserStore()
-  const hasToken = getCookie()
+  const hasToken = getCookie('token')
   router.beforeEach((to, from, next) => {
     console.log(hasToken?.length);
-  console.log(hasToken);
+    console.log(hasToken);
     if (whitePathList.includes(to.path as PageEnum)) {
       next();
       return;
     }
-    if(hasToken?.length === 0) {
+    if(!hasToken?.length) {
       console.log(hasToken);
       router.push({ path: LOGIN_PATH })
     }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { StyleProvider, ConfigProvider } from "ant-design-vue";
 </script>
 
 <template>
@@ -16,9 +17,13 @@ import HelloWorld from './components/HelloWorld.vue'
       </nav>
     </div>
   </header> -->
-
-  <RouterView />
+  <StyleProvider>
+    <ConfigProvider>
+      <RouterView />
+    </ConfigProvider>
+  </StyleProvider>
 </template>
 
 <style scoped>
+
 </style>
