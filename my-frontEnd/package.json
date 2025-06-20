@@ -17,6 +17,7 @@
     "@vuemap/vue-amap": "^2.1.13",
     "@vuemap/vue-amap-extra": "^2.1.5",
     "@vuemap/vue-amap-loca": "^2.1.2",
+    "@vueuse/core": "^13.3.0",
     "ant-design-vue": "~4.2.6",
     "axios": "^1.9.0",
     "js-cookie": "^3.0.5",

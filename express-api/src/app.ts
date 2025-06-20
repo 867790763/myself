@@ -3,7 +3,7 @@ import cors from 'cors';
 import config from './config';
 import userRouter from './routes/userRoutes';
 import loginRouter from './routes/loginRouter';
-
+import sysRouter from "./routes/sysRouter";
 const app = express();
 
 // 中间件
@@ -22,6 +22,7 @@ const baseUrl: string = config.baseUrl
 // 业务路由
 app.use(baseUrl + '/users', userRouter);
 app.use(baseUrl, loginRouter);
+app.use(baseUrl + '/sys', sysRouter);
 // 启动服务器
 app.listen(config.port, () => {
   console.log(`🚀 服务运行中: http://localhost:${config.port}`);

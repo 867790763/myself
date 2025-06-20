@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
 import { login as userLogin, logout as userLogout } from '@/api/login'
 import { setCookie, removeCookie } from '@/utils/auth'
+import { setStorage, getStorage } from "@/utils/cache";
 import { message } from "ant-design-vue";
-
+import { PageEnum } from "@/enums/pageEnum";
+import { router } from "@/router/index";
 export const useUserStore = defineStore('user', {
   state: () => ({
     userInfo: {},
@@ -23,6 +25,7 @@ export const useUserStore = defineStore('user', {
         this.username = userInfo.username
         this.setToken(data.data.token)
         setCookie('token', data.data.token)
+        setStorage('userInfo', data.data.user)
         return data
       } catch (err) {
         removeCookie('token')
@@ -38,6 +41,8 @@ export const useUserStore = defineStore('user', {
         this.username = ''
         this.token = ''
         removeCookie('token')
+        setStorage('userInfo', '')
+        router.push(PageEnum.BASE_LOGIN)
       }
     },
     setToken(token: string) {
@@ -50,6 +55,9 @@ export const useUserStore = defineStore('user', {
   getters: {
     getToken(): string {
       return this.token
+    },
+    getUserInfo(): string {
+      return getStorage('userInfo')
     },
   }
 })

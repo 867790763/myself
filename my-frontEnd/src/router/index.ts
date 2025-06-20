@@ -1,14 +1,26 @@
 import type { App } from "vue";
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import layout from "../components/layout/index.vue";
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: layout,
+      children:[
+        {
+          path: '/three',
+          name: 'about',
+          component: () => import('../views/three/demo.vue'),
+        },
+        {
+          path: '/amap',
+          name: 'about',
+          component: () => import('../views/map/amap/index.vue'),
+        },
+      ]
     },
     {
       path: '/about',
@@ -22,17 +34,7 @@ export const router = createRouter({
       path: '/login',
       name: 'login',
       component: () => import('../views/sys/login.vue'),
-    },
-    {
-      path: '/three',
-      name: 'about',
-      component: () => import('../views/three/demo.vue'),
-    },
-    {
-      path: '/amap',
-      name: 'about',
-      component: () => import('../views/map/amap/index.vue'),
-    },
+    }
   ],
 })
 export function setupRouter(app: App<Element>) {

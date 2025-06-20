@@ -85,6 +85,7 @@ import {
   AlipayCircleFilled,
   GithubFilled,
 } from '@ant-design/icons-vue';
+import { getCookie } from '@/utils/auth'
 import { useUserStore } from "@/stores/modules/user";
 import { router } from "@/router";
 import axios from "axios";
@@ -109,6 +110,13 @@ const submit = async () => {
     }
   })
 };
+const isLogin = () => {
+  const isToken = getCookie('token')
+  if (isToken) {
+    router.push('/')
+  }
+};
+isLogin()
 </script>
 
 <style lang="less" scoped>

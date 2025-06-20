@@ -16,10 +16,9 @@ export function login(params?: LoginParams): Promise<LoginParams> {
   });
 }
 
-export function logout(params: any) {
+export function logout() {
   return http.request({
     url: `/logout`,
     method: "post",
-    data: params
   });
 }
