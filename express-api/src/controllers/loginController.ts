@@ -23,7 +23,7 @@ export const login = (req: Request, res: Response) => {
   if (!user) {
      return res.status(200).json({
       code: 401,
-      msg: '用户名错误',
+      msg: '用户名或密码错误',
       success: false,
       data: {}
     })
