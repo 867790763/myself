@@ -8,7 +8,6 @@ export interface LoginParams {
 }
 
 export function login(params?: LoginParams): Promise<LoginParams> {
-  console.log(import.meta.env.VITE_BASE_API,);
   return http.request({
     url: `/login`,
     method: "post",

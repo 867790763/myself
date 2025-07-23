@@ -1,22 +1,12 @@
 <template>
-  <div></div>
+  <layoutMenu></layoutMenu>
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue'
-export default defineComponent({
-name: 'layoutSider',
-props: {
-},
-setup(){
-return{
-}
-},
-})
+<script lang='ts' setup>
+import layoutMenu from "../menu/index.vue";
+
 </script>
 
 <style lang='less' scoped>
-  . {
 
-  }
 </style>

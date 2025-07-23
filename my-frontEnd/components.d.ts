@@ -25,6 +25,7 @@ declare module 'vue' {
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     AQrcode: typeof import('ant-design-vue/es')['QRCode']
     ARow: typeof import('ant-design-vue/es')['Row']
+    ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
     ATabPane: typeof import('ant-design-vue/es')['TabPane']
     ATabs: typeof import('ant-design-vue/es')['Tabs']
     Head: typeof import('./src/components/layout/head/index.vue')['default']

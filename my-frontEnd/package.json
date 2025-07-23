@@ -20,6 +20,7 @@
     "@vueuse/core": "^13.3.0",
     "ant-design-vue": "~4.2.6",
     "axios": "^1.9.0",
+    "crypto-js": "^4.2.0",
     "js-cookie": "^3.0.5",
     "nprogress": "^0.2.0",
     "pinia": "^3.0.1",

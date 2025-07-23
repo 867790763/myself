@@ -3,10 +3,11 @@
     <Layout>
       <layoutHeader></layoutHeader>
       <Layout>
-        <layoutSider></layoutSider>
+        <layoutSider>
+          
+        </layoutSider>
       </Layout>
     </Layout>
-    <layoutMenu></layoutMenu>
   </div>
 </template>
 
@@ -14,7 +15,6 @@
 // import { ref } from 'vue'
 import { Layout } from 'ant-design-vue';
 import layoutHeader from "./header/index.vue";
-import layoutMenu from "./menu/index.vue";
 import layoutSider from "./sider/index.vue";
 </script>
 

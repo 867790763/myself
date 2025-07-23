@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { login as userLogin, logout as userLogout } from '@/api/login'
-import { setCookie, removeCookie } from '@/utils/auth'
+import { getCookie, setCookie, removeCookie } from '@/utils/auth'
 import { setStorage, getStorage } from "@/utils/cache";
 import { message } from "ant-design-vue";
 import { PageEnum } from "@/enums/pageEnum";
@@ -54,7 +54,7 @@ export const useUserStore = defineStore('user', {
   },
   getters: {
     getToken(): string {
-      return this.token
+      return this.token || getCookie('token')
     },
     getUserInfo(): string {
       return getStorage('userInfo')

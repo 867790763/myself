@@ -106,7 +106,7 @@ const submit = async () => {
     console.log(res);
     if (res.code === 200) {
       // message.success({ content: res.data.msg, duration: 2 });
-      message.loading({ content: '请稍等，正在进入系统...', duration: 1.5 }).then(() => router.push('/'))
+      message.loading({ content: '请稍等，正在进入系统...', duration: 1.5 }).then(() => {router.push('/')})
     }
   })
 };

@@ -1,18 +1,19 @@
 import type { Router } from "vue-router";
 import { useUserStore } from "@/stores/modules/user";
 import { PageEnum } from '@/enums/pageEnum';
-import { getCookie } from '@/utils/auth'
+
 const LOGIN_PATH = PageEnum.BASE_LOGIN;
 // 设置白名单
 const whitePathList: PageEnum[]= [LOGIN_PATH]
 
 export const createPermission = (router: Router) => {
   const userStore = useUserStore()
-  const hasToken = getCookie('token')
-  router.beforeEach((to, from, next) => {
+  router.beforeEach(async (to, from, next) => {
+    const hasToken = await userStore.getToken
     console.log(hasToken?.length);
     console.log(hasToken);
     if (whitePathList.includes(to.path as PageEnum)) {
+      console.log('whitePathList', whitePathList);
       next();
       return;
     }
