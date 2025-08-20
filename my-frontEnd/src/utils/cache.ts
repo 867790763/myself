@@ -1,6 +1,6 @@
 
 const base_name = 'myself_'
-export const setStorage = (key: string, value: string) => {
+export const setStorage = (key: string, value: string | null) => {
   localStorage.setItem(base_name + key, JSON.stringify(value))
 }
 

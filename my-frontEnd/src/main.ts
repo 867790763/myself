@@ -5,7 +5,7 @@ import App from './App.vue'
 // import router from './router'
 import { setupRouter, router } from "@/router";
 import { setupStore } from "@/stores";
-import { createPermission } from "@/router/permission";
+import { createPermission } from "@/router/guard/permissionGuard";
 import VueAMap, {initAMapApiLoader} from '@vuemap/vue-amap';
 // import VueAMapLoca from '@vuemap/vue-amap-loca';
 // import VueAMapExtra from '@vuemap/vue-amap-extra';

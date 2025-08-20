@@ -28,6 +28,7 @@ declare module 'vue' {
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
     ATabPane: typeof import('ant-design-vue/es')['TabPane']
     ATabs: typeof import('ant-design-vue/es')['Tabs']
+    Content: typeof import('./src/components/layout/content/index.vue')['default']
     Head: typeof import('./src/components/layout/head/index.vue')['default']
     Header: typeof import('./src/components/layout/header/index.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']

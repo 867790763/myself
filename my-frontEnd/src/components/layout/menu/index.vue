@@ -3,7 +3,7 @@
   :items="items"
   style="width: 256px;height: 100vh;"
   ></AMenu> -->
-  <div style="height: 100vh;">
+  <div style="min-width: 200px;height: 100vh;">
     <AMenu mode="inline" :inline-collapsed="state.collapsed" theme="dark" style="width: 256px;position: fixed;top: 48px;height: calc(100% - 48px);">
       <template v-for="item in items" :key="item.key">
         <!-- 有子菜单 -->
@@ -15,7 +15,7 @@
               <span>{{ item.label }}</span>
             </span>
           </template>
-          <a-menu-item v-for="child in item.children" :key="child.key">
+          <a-menu-item v-for="child in item.children" :key="child.key" @click="handleClickMenu(child)">
             {{ child.label }}
           </a-menu-item>
         </a-sub-menu>
@@ -43,6 +43,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons-vue';
+import { router } from '@/router';
   const state = reactive({
     collapsed: false,
     selectedKeys: ['1'],
@@ -72,6 +73,10 @@ import {
     items.push(data)
     console.log(res.data);
     console.log(items);
+  }
+  const handleClickMenu = (child: object) => {
+    console.log(child);
+    router.push({path: child.path})
   }
   // menuRouter()
 </script>

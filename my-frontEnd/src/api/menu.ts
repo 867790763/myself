@@ -5,7 +5,10 @@ export interface ItemType {
   key: string,
   icon?: any,
   children?: ItemType[],
-  type?: 'group',
+  component?: string,
+  type?: "group",
+  path?: string,
+  url?: string,
 }
 
 export const getMenuList = (params?: ItemType) => { // 获取菜单列表

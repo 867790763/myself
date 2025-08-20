@@ -17,6 +17,7 @@ export const menuList: Menu[] = [
     label: '仪表盘',
     icon: 'PieChartTwoTone',
     component: "LAYOUT",
+    path: '/home/dashboard/index',
   },
   {
     key: 'users',

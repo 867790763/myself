@@ -1,11 +1,14 @@
 <template>
   <div>
     <Layout>
-      <layoutHeader></layoutHeader>
-      <Layout>
-        <layoutSider>
+      <LayoutHeader></LayoutHeader>
+      <Layout style="flex-direction: row;">
+        <LayoutSider>
           
-        </layoutSider>
+        </LayoutSider>
+        <!-- <Layout style="width: 0;display: flex;flex-direction: column;"> -->
+          <LayoutContent></LayoutContent>
+        <!-- </Layout> -->
       </Layout>
     </Layout>
   </div>
@@ -14,8 +17,9 @@
 <script setup lang='ts'>
 // import { ref } from 'vue'
 import { Layout } from 'ant-design-vue';
-import layoutHeader from "./header/index.vue";
-import layoutSider from "./sider/index.vue";
+import LayoutHeader from "./header/index.vue";
+import LayoutSider from "./sider/index.vue";
+import LayoutContent from "./content/index.vue";
 </script>
 
 <style scoped>
