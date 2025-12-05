@@ -1,14 +1,14 @@
 import type { App } from "vue";
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import layout from "../components/layout/index.vue";
+import LAYOUT from "../components/layout/index.vue";
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/:path(.*)*',
       name: 'home',
-      component: layout,
+      component: LAYOUT,
       children:[
         {
           path: '/three',
@@ -20,7 +20,13 @@ export const router = createRouter({
           name: 'about',
           component: () => import('../views/map/amap/index.vue'),
         },
+
       ]
+    },
+    {
+      path: '/sys',
+      name: 'user',
+      component: () => import('../views/sys/user/index.vue'),
     },
     {
       path: '/about',

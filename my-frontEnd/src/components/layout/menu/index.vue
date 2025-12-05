@@ -3,7 +3,6 @@
   :items="items"
   style="width: 256px;height: 100vh;"
   ></AMenu> -->
-  <div style="min-width: 200px;height: 100vh;">
     <AMenu mode="inline" :inline-collapsed="state.collapsed" theme="dark" style="width: 256px;position: fixed;top: 48px;height: calc(100% - 48px);">
       <template v-for="item in items" :key="item.key">
         <!-- 有子菜单 -->
@@ -32,7 +31,7 @@
       <MenuUnfoldOutlined v-if="state.collapsed" />
       <MenuFoldOutlined v-else />
     </a-button>
-  </div>
+
 </template>
 
 <script lang="ts" setup>

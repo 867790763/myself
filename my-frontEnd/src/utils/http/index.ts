@@ -8,7 +8,6 @@ import { ContentTypeEnum, ResultEnum } from "@/enums/request-enum";
 import NProgress from "../progress";
 import { useUserStore } from "@/stores/modules/user";
 import { message } from "ant-design-vue";
-console.log(import.meta.env.VITE_BASE_API);
 // 默认 axios 实例请求配置
 const configDefault = {
   headers: {
@@ -49,10 +48,8 @@ class Http {
     Http.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => {
         NProgress.done();
-        console.log(response);
         // 与后端协定的返回字段
         const { data } = response;
-        console.log(data);
         // 判断请求是否成功
         const isSuccess =
           data &&

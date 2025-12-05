@@ -10,15 +10,11 @@ export const createPermission = (router: Router) => {
   const userStore = useUserStore()
   router.beforeEach(async (to, from, next) => {
     const hasToken = await userStore.getToken
-    console.log(hasToken?.length);
-    console.log(hasToken);
     if (whitePathList.includes(to.path as PageEnum)) {
-      console.log('whitePathList', whitePathList);
       next();
       return;
     }
     if(!hasToken?.length) {
-      console.log(hasToken);
       router.push({ path: LOGIN_PATH })
     }
     // router.forEach((route) => {

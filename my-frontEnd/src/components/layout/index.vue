@@ -3,11 +3,11 @@
     <Layout>
       <LayoutHeader></LayoutHeader>
       <Layout style="flex-direction: row;">
-        <LayoutSider>
-          
+        <LayoutSider style="height: 100vh;">
+
         </LayoutSider>
         <!-- <Layout style="width: 0;display: flex;flex-direction: column;"> -->
-          <LayoutContent></LayoutContent>
+        <LayoutContent></LayoutContent>
         <!-- </Layout> -->
       </Layout>
     </Layout>

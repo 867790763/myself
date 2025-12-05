@@ -20,8 +20,8 @@
           <p class="pBorder">登录</p>
           <div style="text-align: center;"></div>
           <a-form :model="formData" :wrapper-col="{ span: 24 }" @submit="submit" style="margin-top: 20px;">
-            <a-form-item name="username" :rules="[{ required: true, message: '请填写用户名/手机号' }]">
-              <a-input v-model:value="formData.username" placeholder="用户名/手机号"></a-input>
+            <a-form-item name="loginCode" :rules="[{ required: true, message: '请填写用户名/手机号' }]">
+              <a-input v-model:value="formData.loginCode" placeholder="用户名/手机号"></a-input>
             </a-form-item>
             <a-form-item  name="password" :rules="[{ required: true, message: '请填写密码' }]">
               <a-input-password v-model:value="formData.password" placeholder="密码"></a-input-password>
@@ -46,8 +46,8 @@
             </a-tab-pane>
             <a-tab-pane key="2" tab="密码登录">
               <a-form :model="formData" :wrapper-col="{ span: 24 }" @submit="submit">
-                <a-form-item name="username" :rules="[{ required: true, message: '请填写用户名/手机号' }]">
-                  <a-input v-model:value="formData.username" placeholder="用户名/手机号"></a-input>
+                <a-form-item name="loginCode" :rules="[{ required: true, message: '请填写用户名/手机号' }]">
+                  <a-input v-model:value="formData.loginCode" placeholder="用户名/手机号"></a-input>
                 </a-form-item>
                 <a-form-item  name="password" :rules="[{ required: true, message: '请填写密码' }]">
                   <a-input-password v-model:value="formData.password" placeholder="密码"></a-input-password>
@@ -79,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, toRaw } from "vue";
 import {
   WechatFilled,
   AlipayCircleFilled,
@@ -93,7 +93,7 @@ import { message } from "ant-design-vue";
 const activeKey = ref('2');
 const loading  = ref(false);
 const formData = ref(<LoginParams>{
-  username: '',
+  loginCode: '',
   password: '',
   validCode: '',
   rememberMe: false
@@ -101,12 +101,12 @@ const formData = ref(<LoginParams>{
 const submit = async () => {
   console.log(formData.value);
   loading.value = true
-  useUserStore().login(formData.value).then(res => {
+  useUserStore().login(toRaw(formData.value)).then(res => {
     loading.value = false
     console.log(res);
     if (res.code === 200) {
       // message.success({ content: res.data.msg, duration: 2 });
-      message.loading({ content: '请稍等，正在进入系统...', duration: 1.5 }).then(() => {router.push('/')})
+      message.loading({ content: '请稍等，正在进入系统...', duration: 1.5 }).then(() => {router.push('/user')})
     }
   })
 };

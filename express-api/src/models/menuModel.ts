@@ -25,8 +25,8 @@ export const menuList: Menu[] = [
     icon: 'UserOutlined',
     component: "LAYOUT",
     children: [
-      { key: 'list', label: '用户管理', component: '/sys/user/index', path: '/sys/user/index', url: '/sys/user/index' },
-      { key: 'roles', label: '角色管理', component: '/sys/role/index', path: '/sys/role/index', url: '/sys/role/index' },
+      { key: 'list', label: '用户管理', component: '/sys/user/index', path: '/sys/user', url: '/sys/user/index' },
+      { key: 'roles', label: '角色管理', component: '/sys/role/index', path: '/sys/role', url: '/sys/role/index' },
     ],
   },
 ];

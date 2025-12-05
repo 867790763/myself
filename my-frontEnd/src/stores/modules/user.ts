@@ -2,27 +2,33 @@ import { defineStore } from 'pinia'
 import { login as userLogin, logout as userLogout } from '@/api/login'
 import { getCookie, setCookie, removeCookie } from '@/utils/auth'
 import { setStorage, getStorage } from "@/utils/cache";
+import { encryptByBase64 } from "@/utils/cipher";
 import { message } from "ant-design-vue";
 import { PageEnum } from "@/enums/pageEnum";
 import { router } from "@/router/index";
 export const useUserStore = defineStore('user', {
   state: () => ({
     userInfo: {} as object | null,
-    username: '',
+    loginCode: '',
     token: '',
     roleList: [] as Array<string>
   }),
 
   actions: {
     // 登录
-    async login(userInfo: { username: string; password: string }) {
+    async login(userInfo: { loginCode: string; password: string }) {
+      let { loginCode, password } = userInfo
+      loginCode = encryptByBase64(loginCode)
+      password = encryptByBase64(password)
+      const loginParams = { loginCode, password, validCode: userInfo.validCode, rememberMe: userInfo.rememberMe }
       try {
-        const data = await userLogin(userInfo)
+        const data = await userLogin(loginParams)
+        console.log(data);
         if (data.code !== 200) {
           message.error(data.msg)
           return data
         }
-        this.username = userInfo.username
+        this.loginCode = userInfo.loginCode
         this.setToken(data.data.token)
         this.setRoleList(data.data.role)
         this.setUserInfo(data.data)
@@ -41,7 +47,7 @@ export const useUserStore = defineStore('user', {
       try {
         await userLogout()
       } finally {
-        this.username = ''
+        this.loginCode = ''
         this.token = ''
         this.setRoleList([]);
         this.setUserInfo(null)

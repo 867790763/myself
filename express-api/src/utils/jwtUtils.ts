@@ -2,9 +2,9 @@ import jwt from 'jsonwebtoken';
 import config from '../config';
 
 // 生成JWT令牌
-export const generateToken = (userId: string): string => {
-  return jwt.sign({ id: userId }, config.jwt.secret, {
-    expiresIn: config.jwt.expiresIn
+export const generateToken = (userCode: string): string => {
+  return jwt.sign({ userCode }, config.jwt.secret, {
+    expiresIn: config.jwt.expiresIn,
   });
 };
 
@@ -21,8 +21,8 @@ export const verifyToken = (token: string): Promise<any> => {
 // 从JWT令牌中提取用户ID
 export const extractUserIdFromToken = (token: string): string | null => {
   try {
-    const decoded = jwt.verify(token, config.jwt.secret) as { id: string };
-    return decoded.id;
+    const decoded = jwt.verify(token, config.jwt.secret) as { userCode: string };
+    return decoded.userCode;
   } catch (error) {
     return null;
   }

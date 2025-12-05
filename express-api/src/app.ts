@@ -1,9 +1,11 @@
 import express from 'express';
-import cors from 'cors';
+// import cors from 'cors';
 import config from './config';
 import userRouter from './routes/userRoutes';
 import loginRouter from './routes/loginRouter';
 import sysRouter from "./routes/sysRouter";
+import communitiesRouter from "./routes/communitiesRouter";
+const cors = require('cors')
 const app = express();
 
 // 中间件
@@ -23,6 +25,7 @@ const baseUrl: string = config.baseUrl
 app.use(baseUrl + '/users', userRouter);
 app.use(baseUrl, loginRouter);
 app.use(baseUrl + '/sys', sysRouter);
+app.use(baseUrl + '/communities', communitiesRouter);
 // 启动服务器
 app.listen(config.port, () => {
   console.log(`🚀 服务运行中: http://localhost:${config.port}`);

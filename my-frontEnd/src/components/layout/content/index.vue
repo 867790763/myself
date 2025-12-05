@@ -1,7 +1,8 @@
 <template>
   <div>
-    <keep-alive></keep-alive>
-    123
+    <RouterView>
+      <keep-alive></keep-alive>
+    </RouterView>
   </div>
 </template>
 
