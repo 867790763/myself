@@ -24,6 +24,7 @@
     "js-cookie": "^3.0.5",
     "nprogress": "^0.2.0",
     "pinia": "^3.0.1",
+    "pit-bimwin-ui": "^3.1.27",
     "three": "^0.176.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"

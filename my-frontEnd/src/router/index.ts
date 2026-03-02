@@ -1,6 +1,5 @@
 import type { App } from "vue";
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import LAYOUT from "../components/layout/index.vue";
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,22 +10,26 @@ export const router = createRouter({
       component: LAYOUT,
       children:[
         {
-          path: '/three',
-          name: 'about',
-          component: () => import('../views/three/demo.vue'),
+          path: '/examples',
+          name: 'examples',
+          component: () => import('../views/examples/demo.vue'),
         },
         {
           path: '/amap',
-          name: 'about',
+          name: 'amap',
           component: () => import('../views/map/amap/index.vue'),
         },
-
+        {
+          path: '/sys/user',
+          name: 'user',
+          component: () => import('../views/sys/user/list.vue'),
+        },
+        {
+          path: '/sys/role',
+          name: 'role',
+          component: () => import('../views/sys/role/index.vue'),
+        },
       ]
-    },
-    {
-      path: '/sys',
-      name: 'user',
-      component: () => import('../views/sys/user/index.vue'),
     },
     {
       path: '/about',
