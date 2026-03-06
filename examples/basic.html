@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <style>
+      body { margin: 0;}
+      #cvs {
+
+      }
+    </style>
+    <script type="importmap">
+    {
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.183.2/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.183.2/examples/jsm/"
+    }
+    }
+    </script>
+    <script type="module">
+        /*
+        1.全局引入threejs;
+        2.创建canvas用于渲染
+        3.创建渲染器renderer，获取canvas传递给renderer;
+        4.创建相机camera设置视野范围，画布宽高比，近视面，远视面，调整Z轴位置（因为几何体默认渲染在原点）
+        5.创建场景scene；
+        6.创建几何体geomatry设置顶点，创建材质material设置颜色；
+        7.创建网格mesh，将几何体和材质传递给网格
+        8.使用scene.add将网格添加到场景
+        9.使用renderer.render渲染场景和相机
+        */
+        import * as THREE from 'three';
+        // 使用canvas标签绘制
+        const canvas = document.querySelector('#cvs');
+        const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });// antialias n.平滑字体 u.抗锯齿
+        const fov = 75;// 视野范围(field of view)的缩写
+        const aspect = 2;// 画布的宽高比,相机默认值为2
+        const near = 0.1;// 近平面
+        const far = 5;// 远平面
+        // 这四个参数定义了一个视锥
+        const camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
+        camera.position.z = 2;
+        const scene = new THREE.Scene();
+        const boxWidth = 1;
+        const boxHeight = 1;
+        const boxDept = 1; // dept n.深度
+        const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDept);
+        // const material = new THREE.MeshBasicMaterial({ color: 0x44aa88 });
+        // MeshBasicMaterial材质不会受到灯光的影响。我们将他改成会受灯光影响的MeshPhongMaterial材质。
+        // const material = new THREE.MeshPhongMaterial({ color: 0x44aa88 });
+        function makeInstance(geometry, color, x) {
+            const material = new THREE.MeshPhongMaterial({ color });
+            const cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+            cube.position.x = x;
+            return cube
+        }
+        const cubes = [
+            makeInstance(geometry, 0x44aa88, 0),
+            makeInstance(geometry, 0x8844aa, -2),
+            makeInstance(geometry, 0xaa8844, 2),
+        ]; //new THREE.Mesh(geometry, material);
+        // 灯光
+        const color = 0xFFFFFF;
+        const intensity = 3; // intensity n. 强烈;强度
+        const light = new THREE.DirectionalLight(color, intensity); // directionalLight 定向光
+        light.position.set(-1, 2 ,4);
+        // scene.add(cubes);
+        scene.add(light);
+        function render(time) {
+            time *= 0.001 ; // 将时间单位变为秒
+            cubes.forEach((cube, ndx) => {
+                const speed = 1 + ndx * .1;
+                const rot = speed * time;
+                cube.rotation.x = rot; // rotation n. 旋转;转动
+                cube.rotation.y = rot;
+            })
+            renderer.render(scene, camera);
+            requestAnimationFrame(render);
+        }
+        // 渲染循环函数
+        requestAnimationFrame(render);
+    </script>
+  </head>
+  <body>
+    <canvas id="cvs"></canvas>
+  </body>
+</html>
