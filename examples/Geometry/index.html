@@ -16,9 +16,11 @@
         import * as THREE from 'three';
         const canvas = document.querySelector('#cvs1');
         const renderer = new THREE.WebGLRenderer({ antialias: false, canvas });
+        // 正交相机 适用于2D投影场景
         //  const width = 60;
         // const height = 30;
         // const camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
+        // 透明相机 适用于3D渲染场景
         const camera = new THREE.PerspectiveCamera(75, 2, 0.1, 40);
         camera.position.z = 30;
         const scene = new THREE.Scene();
